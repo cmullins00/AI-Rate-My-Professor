@@ -1,0 +1,125 @@
+{
+    "reviews": [
+      {
+        "professor": "Dr. John Smith",
+        "subject": "Introduction to Psychology",
+        "stars": 4,
+        "review": "Dr. Smith is engaging and makes the material easy to understand. However, his exams can be a bit tricky."
+      },
+      {
+        "professor": "Dr. Emily Davis",
+        "subject": "Calculus I",
+        "stars": 5,
+        "review": "Dr. Davis is fantastic! She explains complex concepts clearly and is very approachable."
+      },
+      {
+        "professor": "Professor Michael Johnson",
+        "subject": "Modern American History",
+        "stars": 3,
+        "review": "The subject matter is interesting, but Professor Johnson's lectures can be a bit dry and monotonous."
+      },
+      {
+        "professor": "Dr. Sarah Lee",
+        "subject": "Organic Chemistry",
+        "stars": 2,
+        "review": "Dr. Lee is knowledgeable but her teaching style is very fast-paced. I struggled to keep up with the course."
+      },
+      {
+        "professor": "Professor Daniel Brown",
+        "subject": "Introduction to Sociology",
+        "stars": 4,
+        "review": "Professor Brown is very insightful and encourages class participation. The assignments are fair."
+      },
+      {
+        "professor": "Dr. Jessica White",
+        "subject": "Statistics",
+        "stars": 5,
+        "review": "Dr. White is excellent. She uses real-world examples to make statistics less intimidating."
+      },
+      {
+        "professor": "Professor William Green",
+        "subject": "Ethics in Philosophy",
+        "stars": 3,
+        "review": "Professor Green's class is thought-provoking, but his grading can be inconsistent and subjective."
+      },
+      {
+        "professor": "Dr. Laura Martinez",
+        "subject": "Biology 101",
+        "stars": 4,
+        "review": "Dr. Martinez is passionate about biology and makes the lectures interactive and engaging."
+      },
+      {
+        "professor": "Professor Robert Wilson",
+        "subject": "World Literature",
+        "stars": 5,
+        "review": "Professor Wilson is an amazing teacher. His love for literature is contagious and his analyses are deep and insightful."
+      },
+      {
+        "professor": "Dr. Linda Thompson",
+        "subject": "Environmental Science",
+        "stars": 3,
+        "review": "Dr. Thompson covers a lot of material, which can be overwhelming. Her feedback on assignments is helpful though."
+      },
+      {
+        "professor": "Professor James Anderson",
+        "subject": "Computer Science Fundamentals",
+        "stars": 5,
+        "review": "Professor Anderson is fantastic at breaking down complex concepts and his coding labs are very practical."
+      },
+      {
+        "professor": "Dr. Karen Robinson",
+        "subject": "Microeconomics",
+        "stars": 4,
+        "review": "Dr. Robinson is clear and concise in her explanations. The course is well-organized and the assignments are relevant."
+      },
+      {
+        "professor": "Professor David Carter",
+        "subject": "Creative Writing",
+        "stars": 2,
+        "review": "Professor Carter provides minimal feedback on writing assignments and the class lacks structure."
+      },
+      {
+        "professor": "Dr. Amanda Young",
+        "subject": "Genetics",
+        "stars": 5,
+        "review": "Dr. Young is incredibly knowledgeable and her enthusiasm for genetics makes the subject matter exciting."
+      },
+      {
+        "professor": "Professor Richard Lewis",
+        "subject": "Political Science",
+        "stars": 4,
+        "review": "Professor Lewis is engaging and knowledgeable, but his lectures sometimes go off-topic."
+      },
+      {
+        "professor": "Dr. Michelle Hall",
+        "subject": "Calculus II",
+        "stars": 3,
+        "review": "Dr. Hall is a good teacher, but the course material is challenging and her exams are difficult."
+      },
+      {
+        "professor": "Professor Andrew Nelson",
+        "subject": "Art History",
+        "stars": 4,
+        "review": "Professor Nelson brings art to life with his vivid descriptions and passion. The assignments are creative and enjoyable."
+      },
+      {
+        "professor": "Dr. Megan Adams",
+        "subject": "Physics I",
+        "stars": 3,
+        "review": "Dr. Adams is knowledgeable, but her explanations can be hard to follow at times. Office hours are helpful."
+      },
+      {
+        "professor": "Professor Brian Clark",
+        "subject": "Business Management",
+        "stars": 5,
+        "review": "Professor Clark is incredibly practical and gives real-world examples that are applicable to the industry."
+      },
+      {
+        "professor": "Dr. Natalie Lewis",
+        "subject": "Linguistics",
+        "stars": 4,
+        "review": "Dr. Lewis is passionate about linguistics and makes the subject accessible and interesting."
+      }
+    ]
+  }
+  
