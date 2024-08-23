@@ -43,6 +43,7 @@ Provide accurate and relevant information.
 Keep your responses concise and easy to understand.
 Use RAG (Retrieval Augmented Generation) to access the knowledge base of professor reviews.`;
 
+
 // This can be broken down into three parts:
 export async function POST(request) {
   // 1. Read data from the request
@@ -51,7 +52,7 @@ export async function POST(request) {
     apiKey: process.env.PINECONE_API_KEY,
   });
   const index = pc.index("rag").namespace("ns1");
-  const openai = new OpenAI();
+  const openai = new OpenAI()
 
   const text = data[data.length - 1].content;
   const embedding = await openai.embeddings.create({
@@ -72,7 +73,7 @@ export async function POST(request) {
   results.matches.forEach((match) => {
     resultString += `\n
         Professor: ${match.id}
-        Review: ${match.metadata.review}
+        Review: ${match.metadata.stars}
         Subject: ${match.metadata.subject}
         Stars: ${match.metadata.stars}
         \n\n
@@ -82,14 +83,16 @@ export async function POST(request) {
   const lastMessage = data[data.length - 1]; // 3. Generate results from embedding
   const lastMessageContent = lastMessage.content + resultString;
   const lastDataWithoutLastMessage = data.slice(0, data.length - 1);
-  const completion = await openai.createChatCompletion({
+
+  const completion = await openai.chat.completions.create({
+   
     messages: [
       { role: "system", content: systemPrompt },
       ...lastDataWithoutLastMessage,
       { role: "user", content: lastMessageContent },
     ],
-    model: "gpt-3.5-turbo", // Use a different model if needed
-    stream: true, // Some models may not support streaming
+    model: "gpt-4o",
+    stream: true,
   });
 
   const stream = new ReadableStream({

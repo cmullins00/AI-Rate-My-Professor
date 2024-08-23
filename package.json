@@ -9,15 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/clerk-js": "^5.15.1",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@google/generative-ai": "^0.17.1",
     "@mui/material": "^5.16.7",
     "@pinecone-database/pinecone": "^3.0.1",
-    "next": "14.2.6",
+    "dotenv": "^16.4.5",
+    "next": "^14.2.6",
     "openai": "^4.56.0",
-    "react": "^18",
-    "react-dom": "^18"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^9.0.1",
+    "stripe": "^16.8.0"
   },
   "devDependencies": {
     "eslint": "^8",
