@@ -35,9 +35,18 @@ export default function SignUpPage() {
             >
               Campus Critic
             </Typography>
-
             <Button href="/" color="inherit">
               <Typography>HOME</Typography>
+            </Button>
+            <Button color="inherit" href="/submit">
+              <Typography
+                sx={{
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
+              >
+                Link
+              </Typography>
             </Button>
             <Button color="inherit" href="/sign-in">
               <Typography
@@ -52,7 +61,7 @@ export default function SignUpPage() {
             <Button color="inherit" href="/sign-up">
               <Typography
                 sx={{
-                  color: "#FFFFFF",
+                  color: "inherit",
                   textDecoration: "none",
                 }}
               >

@@ -11,16 +11,10 @@ import {
   Box,
   Button,
   Container,
-  Grid,
-  Icon,
-  Slide,
-  Fade,
   Toolbar,
   Typography,
-  CssBaseline,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import React from "react";
 import SchoolIcon from "@mui/icons-material/School";
 import Link from "next/link";
 
@@ -51,6 +45,16 @@ export default function SignInPage() {
             <Button href="/" color="inherit">
               <Typography>HOME</Typography>
             </Button>
+            <Button color="inherit" href="/submit">
+              <Typography
+                sx={{
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
+              >
+                Link
+              </Typography>
+            </Button>
             <Button color="inherit" href="/sign-in">
               <Typography
                 sx={{
@@ -64,7 +68,7 @@ export default function SignInPage() {
             <Button color="inherit" href="/sign-up">
               <Typography
                 sx={{
-                  color: "#FFFFFF",
+                  color: "inherit",
                   textDecoration: "none",
                 }}
               >
