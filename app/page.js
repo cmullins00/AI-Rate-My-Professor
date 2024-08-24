@@ -11,34 +11,72 @@ import {
   Typography,
 } from "@mui/material";
 import Head from "next/head";
-
+import Image from "next/image";
+import {
+  ClerkProvider,
+  SignIn,
+  SignedIn,
+  SignedOut,
+  UserButton,
+  useAuth,
+} from "@clerk/nextjs";
 export default function Home() {
   return (
     <Container maxWidth="100vw">
-      <AppBar postion="static " sx={{ backgroundColor: "3f51b5" }}>
+      <AppBar position="fixed" sx={{ backgroundColor: "#000" }}>
         <Toolbar>
-          <Typography
-            variant="h6"
-            sx={{
-              flexGrow: 1,
-            }}
-          >
-            Rate My Prof
+          <Typography variant="h6" style={{ flexGrow: 1 }}>
+            Campus Critic
           </Typography>
+          <Button  href="/" sx={{
+            color: "#FFFFFF"
+          }}>
+            <Typography>HOME</Typography>
+          </Button>
+          <ClerkProvider>
+            <SignedOut>
+              <Button
+                color="inherit"
+                href="sign-in"
+                sx={{
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
+              >
+                {" "}
+                Login
+              </Button>
+              <Button
+                color="inherit"
+                href="sign-up"
+                sx={{
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
+              >
+                {" "}
+                Sign up
+              </Button>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </ClerkProvider>
         </Toolbar>
       </AppBar>
 
       <Box
         sx={{
-          textAlign: "center",
-
+          textAlign: "left",
           my: 25,
+          mx: 25,
+          //bgcolor: "#000"
         }}
       >
         <Typography variant="h2" gutterBottom>
-          Welcome to Ai Rate My Professor
+          Campus Critic
         </Typography>
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h5">
           {""}
           Your go-to hub for discovering the best professors for your courses.
           Whether you're looking for engaging lectures, fair grading, or just
