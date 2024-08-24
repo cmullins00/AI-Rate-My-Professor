@@ -1,118 +1,203 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  Grid,
+  Icon,
+  Slide,
+  Fade,
+  Toolbar,
+  Typography,
+  CssBaseline,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
-import { Box, Button, TextField, Stack } from "@mui/material";
+import {
+  ClerkProvider,
+  SignIn,
+  SignedIn,
+  SignedOut,
+  UserButton,
+  useAuth,
+} from "@clerk/nextjs";
+import SchoolIcon from "@mui/icons-material/School";
 
 export default function Home() {
-  const [messages, setMessages] = useState([
-    {
-      role: "assistant",
-      content:
-        "Hello! I'm the Rate My Professor support assistant. How may I help you today?",
-    },
-  ]);
-  const [message, setMessage] = useState("");
-  const sendMessage = async () => {
-    setMessages((messages) => [
-      ...messages,
-      { role: "user", content: message },
-      { role: "assistant", content: "Loading..." },
-    ]);
+  const [show, setShow] = useState(false);
 
-    setMessage("");
-    const response = await fetch("/api/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+  const theme = createTheme({
+    palette: {
+      primary: {
+        light: "#b8c8ff",
+        main: "#1A3196",
+        dark: "#051e82",
       },
-      body: JSON.stringify([...messages, { role: "user", content: message }]),
-    }).then(async (res) => {
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
+      secondary: {
+        main: "#f50057",
+      },
+      background: {
+        default: "#051e82",
+      },
+    },
+  });
 
-      let result = "";
-      return reader.read().then(function processText({ done, value }) {
-        if (done) {
-          return result;
-        }
-        const text = decoder.decode(value || new Uint8Array(), {
-          stream: true,
-        });
-        setMessages((messages) => {
-          let lastMessage = messages[messages.length - 1];
-          let otherMessages = messages.slice(0, -1);
-          return [
-            ...otherMessages,
-            { ...lastMessage, content: lastMessage.content + text },
-          ];
-        });
-
-        return reader.read().then(processText);
-      });
-    });
-  };
+  useEffect(() => {
+    setShow(true);
+  }, []);
 
   return (
-    <Box
-      width="100vw"
-      height="100vh"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Stack
-        direction="column"
-        width="500px"
-        height="700px"
-        border="1px solid black"
-        p={2}
-        spacing={3}
-      >
-        <Stack
-          direction="column"
-          flexGrow={1}
-          overflow={"auto"}
-          maxHeight={"100%"}
-          spacing={2}
+    <ThemeProvider theme={theme}>
+      <CssBaseline>
+        <Container
+          maxWidth="100vw"
+          sx={{
+            background: "linear-gradient(to top, #b8c8ff, #2986cc)",
+            position: "relative",
+            zIndex: 1,
+          }}
         >
-          {messages.map((message, index) => (
-            <Box
-              key={index}
-              display="flex"
-              justifyContent={
-                message.role === "assistant" ? "flex-start" : "flex-end"
-              }
-            >
-              <Box
-                bgcolor={
-                  message.role === "assistant"
-                    ? "primary.main"
-                    : "secondary.main"
-                }
-                color="white"
-                borderRadius={16}
-                p={3}
-              >
-                {message.content}
-              </Box>
-            </Box>
-          ))}
-        </Stack>
-        <Stack direction="row" spacing={2}>
-          <TextField
-            label="Ask a question..."
-            fullWidth
-            value={message}
-            onChange={(e) => {
-              setMessage(e.target.value);
+          <Box
+            sx={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              opacity: 0.1,
+              backgroundImage: `url(https://www.thenubianmessage.com/wp-content/uploads/2024/03/Senait-Conformity-in-College-1280x640.jpg)`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              zIndex: -1, // Ensure it's behind other content
             }}
           />
-          <Button variant="contained" onClick={sendMessage}>
-            Send
-          </Button>
-        </Stack>
-      </Stack>
-    </Box>
+          <AppBar position="fixed" sx={{ backgroundColor: "primary.main" }}>
+            <Toolbar>
+              <SchoolIcon fontSize="large" sx={{ mr: 1 }} />
+              <Typography
+                variant="h6"
+                fontWeight={"bold"}
+                sx={{
+                  flexGrow: 1,
+                }}
+              >
+                Campus Critic
+              </Typography>
+              <Button href="/" color="inherit">
+                <Typography>HOME</Typography>
+              </Button>
+              <ClerkProvider>
+                <SignedOut>
+                  <Button color="inherit" href="/sign-in">
+                    <Typography
+                      sx={{
+                        color: "inherit",
+                        textDecoration: "none",
+                      }}
+                    >
+                      Login
+                    </Typography>
+                  </Button>
+                  <Button color="inherit" href="/sign-up">
+                    <Typography
+                      sx={{
+                        color: "inherit",
+                        textDecoration: "none",
+                      }}
+                    >
+                      Sign Up
+                    </Typography>
+                  </Button>
+                </SignedOut>
+                <SignedIn>
+                  <UserButton />
+                </SignedIn>
+              </ClerkProvider>
+            </Toolbar>
+          </AppBar>
+          <Grid
+            container
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Box
+              sx={{
+                textAlign: "left",
+                width: { xs: "90%", s: "60%", md: "45%", lg: "40%" },
+                my: { xs: 10, s: 12, md: 15, lg: 25 },
+                ml: { xs: 0, s: 5, md: 10 },
+              }}
+            >
+              <Slide in={show} direction="right" timeout={800}>
+                <div>
+                  <Fade in={show} timeout={1400}>
+                    <Box>
+                      <Typography
+                        variant="h3"
+                        sx={{ m: 2 }}
+                        color="white"
+                        fontWeight={"bold"}
+                        gutterBottom
+                      >
+                        Navigate Classes with Reviews from Students.
+                      </Typography>
+                      <Typography
+                        variant="h6"
+                        sx={{ mx: 2, my: 3 }}
+                        gutterBottom
+                      >
+                        Your go-to hub for discovering the best professors for
+                        your courses. Whether you're looking for engaging
+                        lectures, fair grading, or just want to know what to
+                        expect, we've got you covered. Start your search today
+                        and make informed decisions about your education.
+                      </Typography>
+                      <Button
+                        variant="contained"
+                        sx={{
+                          mx: 2,
+                          my: 1,
+                          borderRadius: "18px",
+                          backgroundColor: "primary.dark",
+                        }}
+                        href="aichat"
+                      >
+                        Get Started
+                      </Button>
+                    </Box>
+                  </Fade>
+                </div>
+              </Slide>
+            </Box>
+            <Slide in={show} direction="right" timeout={800}>
+              <div>
+                <Fade in={show} timeout={1400}>
+                  <Box
+                    component="img"
+                    sx={{
+                      height: 1000,
+                      width: 1000,
+                      mr: 10,
+                      borderRadius: "20px",
+                      maxHeight: { md: 210, lg: 300, xl: 400 },
+                      maxWidth: { md: 300, lg: 450, xl: 600 },
+                      display: { xs: "none", s: "none", md: "flex" },
+                    }}
+                    alt="Rate My Professors" // Replace this pic with something else
+                    src="https://theeyeopener.com/wp-content/uploads/2020/01/RateMyProf_PerniaJamshed_Jan2020-01.png"
+                  />
+                </Fade>
+              </div>
+            </Slide>
+          </Grid>
+        </Container>
+      </CssBaseline>
+    </ThemeProvider>
   );
 }
