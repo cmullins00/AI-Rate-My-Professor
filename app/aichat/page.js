@@ -78,6 +78,32 @@ export default function Home() {
     });
   };
 
+  const handleSubmit = async () => {
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url }),
+      });
+
+      if (response.ok) {
+        setMessage("Successfully submitted the URL and scraped data");
+      } else {
+        setMessage("Failed to scrape data from the URL.");
+      }
+    } catch (error) {
+      setMessage("An error occurred while submiting the URL.");
+    } finally {
+      setLoading(false);
+      setUrl("");
+    }
+  };
+
   const theme = createTheme({
     palette: {
       primary: {
@@ -100,34 +126,6 @@ export default function Home() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-
-  // Scroll to the bottom of the container
-  /*
-  useEffect(() => {
-    const chatLogElement = messagesEndRef.current;
-    const currentScrollTop = chatLogElement.scrollTop;
-    const targetScrollTop =
-      chatLogElement.scrollHeight - chatLogElement.clientHeight;
-    const scrollDiff = targetScrollTop - currentScrollTop;
-    let startTime;
-
-    function scroll(timestamp) {
-      if (!startTime) {
-        startTime = timestamp;
-      }
-
-      const elapsedTime = timestamp - startTime;
-      const progress = elapsedTime / 200;
-
-      chatLogElement.scrollTop = currentScrollTop + scrollDiff * progress;
-
-      if (progress < 1) {
-        window.requestAnimationFrame(scroll);
-      }
-    }
-
-    window.requestAnimationFrame(scroll);
-  }, [messages.length]); */
 
   return (
     <ThemeProvider theme={theme}>
@@ -167,37 +165,40 @@ export default function Home() {
               >
                 Campus Critic
               </Typography>
-              <Button
-                href="/"
-                sx={{
-                  color: "#FFFFFF",
-                }}
-              >
+              <Button href="/" color="inherit">
                 <Typography>HOME</Typography>
+              </Button>
+              <Button color="inherit" href="/submit">
+                <Typography
+                  sx={{
+                    color: "inherit",
+                    textDecoration: "none",
+                  }}
+                >
+                  Link
+                </Typography>
               </Button>
               <ClerkProvider>
                 <SignedOut>
-                  <Button
-                    color="inherit"
-                    href="sign-in"
-                    sx={{
-                      color: "inherit",
-                      textDecoration: "none",
-                    }}
-                  >
-                    {" "}
-                    Login
+                  <Button color="inherit" href="/sign-in">
+                    <Typography
+                      sx={{
+                        color: "inherit",
+                        textDecoration: "none",
+                      }}
+                    >
+                      Login
+                    </Typography>
                   </Button>
-                  <Button
-                    color="inherit"
-                    href="sign-up"
-                    sx={{
-                      color: "inherit",
-                      textDecoration: "none",
-                    }}
-                  >
-                    {" "}
-                    Sign up
+                  <Button color="inherit" href="/sign-up">
+                    <Typography
+                      sx={{
+                        color: "inherit",
+                        textDecoration: "none",
+                      }}
+                    >
+                      Sign Up
+                    </Typography>
                   </Button>
                 </SignedOut>
                 <SignedIn>

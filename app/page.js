@@ -6,7 +6,6 @@ import {
   Button,
   Container,
   Grid,
-  Icon,
   Slide,
   Fade,
   Toolbar,
@@ -90,6 +89,16 @@ export default function Home() {
               </Typography>
               <Button href="/" color="inherit">
                 <Typography>HOME</Typography>
+              </Button>
+              <Button color="inherit" href="/submit">
+                <Typography
+                  sx={{
+                    color: "inherit",
+                    textDecoration: "none",
+                  }}
+                >
+                  Link
+                </Typography>
               </Button>
               <ClerkProvider>
                 <SignedOut>
